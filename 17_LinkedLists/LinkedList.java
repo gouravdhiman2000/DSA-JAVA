@@ -160,6 +160,30 @@ public class LinkedList {
         return -1;
     }
 
+    //Recursive Search
+    //In recSearch head is getting changed, so we created helper func. to chnage the head, helper func. is the actual recursive func.
+    public int helper(Node head, int key){
+        //base case
+        if(head == null){
+            return -1;
+        }
+
+        if(head.data == key){
+            return 0;
+        }
+        //track can helper func. find the key in the rest of the LL
+        int idx = helper(head.next, key);
+        //if not able to find
+        if(idx == -1){
+            return -1;
+        }
+        //if able to find
+        return idx+1;
+    }
+    public int recSearch(int key){
+        return helper(head, key);
+    }
+
     public static void main(String[] args) {
             // write your code here
             LinkedList ll = new LinkedList();
@@ -185,8 +209,11 @@ public class LinkedList {
             // ll.print();
             // System.out.println("Linkedlist_Size: "+ ll.size);
 
-            System.out.println(ll.itrSearch(3));
-            System.out.println(ll.itrSearch(10));
+            // System.out.println(ll.itrSearch(3));
+            // System.out.println(ll.itrSearch(10));
+
+            System.out.println(ll.recSearch(3));
+            System.out.println(ll.recSearch(10));
         }
     }
 
