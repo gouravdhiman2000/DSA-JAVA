@@ -161,7 +161,7 @@ public class LinkedList {
     }
 
     //Recursive Search
-    //In recSearch head is getting changed, so we created helper func. to chnage the head, helper func. is the actual recursive func.
+    //In recSearch func. head is getting changed, so we created helper func. to chnage the head, helper func. is the actual recursive func.
     public int helper(Node head, int key){
         //base case
         if(head == null){
@@ -182,6 +182,49 @@ public class LinkedList {
     }
     public int recSearch(int key){
         return helper(head, key);
+    }
+
+    //Reverse a LL -> Iterative Approach
+    public void reverseLL(){
+        Node prev = null;
+        Node curr = tail = head;
+        Node next;
+
+        while(curr!= null){
+            //Steps
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        //update head node
+        head = prev;
+    }
+
+    //Find and remove Nth Node from End
+    public void deleteNthfromEnd(int n){
+        //1-> Calculate size of LL
+        int sz = 0;
+        Node temp = head;
+        while(temp!=null){
+            temp = temp.next;
+            sz++;
+        }
+        //Corner Case->Agar head ko delete krna ho
+        if(n == sz){
+            head = head.next; //removeFirst operation
+            return;
+        }
+        //sz-n
+        int i = 1;
+        int iToFind = sz-n;
+        Node prev = head;
+        while(i < iToFind){
+            prev = prev.next;
+            i++;
+        }
+        prev.next = prev.next.next;
+        return;
     }
 
     public static void main(String[] args) {
@@ -212,8 +255,14 @@ public class LinkedList {
             // System.out.println(ll.itrSearch(3));
             // System.out.println(ll.itrSearch(10));
 
-            System.out.println(ll.recSearch(3));
-            System.out.println(ll.recSearch(10));
+            // System.out.println(ll.recSearch(3));
+            // System.out.println(ll.recSearch(10));
+
+            // ll.reverseLL();
+            // ll.print();
+
+            ll.deleteNthfromEnd(3);
+            ll.print();
         }
     }
 
