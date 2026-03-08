@@ -227,21 +227,65 @@ public class LinkedList {
         return;
     }
 
+    //Find Middle of LL -> helper function for checking LL is Palindrome or not
+    public Node findMid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+        }
+        return slow; //slow is my midNode
+    }
+
+    //Check if LL is Palindrome or not
+    public boolean checkPalindrome(){
+        //Base case-> empty LL and Single Node
+        if(head == null || head.next == null){
+            return true;
+        }
+        //Step-1-> find midNode
+        Node midNode = findMid(head);
+
+        //Step-2-> reverse 2nd Half
+        Node prev = null;
+        Node curr = midNode;
+        Node next;
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right = prev; //right half head
+        Node left = head; //left half head
+
+        //Step-3-> check left and right half data
+        while(right != null){
+            if(left.data != right.data){
+                return false;
+            }
+            left = left.next;
+            right = right.next;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
             // write your code here
             LinkedList ll = new LinkedList();
-            ll.print();
-            ll.addFirst(2);
-            ll.print();
-            ll.addFirst(1);
-            ll.print();
-            ll.addLast(4);
-            ll.print();
-            ll.addLast(5);
-            ll.add(2,3);
-            ll.print();
+            // ll.print();
+            // ll.addFirst(2);
+            // ll.print();
+            // ll.addFirst(1);
+            // ll.print();
+            // ll.addLast(4);
+            // ll.print();
+            // ll.addLast(5);
+            // ll.add(2,3);
+            // ll.print();
 
-            System.out.println("Linkedlist_Size: "+ ll.size);
+            // System.out.println("Linkedlist_Size: "+ ll.size);
 
             // ll.removeFirst();
             // ll.print();
@@ -261,8 +305,16 @@ public class LinkedList {
             // ll.reverseLL();
             // ll.print();
 
-            ll.deleteNthfromEnd(3);
+            // ll.deleteNthfromEnd(3);
+            // ll.print();
+
+            ll.addFirst(2);
+            ll.addFirst(1);
+            ll.addLast(2);
+            ll.addLast(1);
+
             ll.print();
+            System.out.println(ll.checkPalindrome());
         }
     }
 
