@@ -271,6 +271,20 @@ public class LinkedList {
         return true;
     }
 
+    //Detect cycle in LL(
+    public static boolean isCycle(){
+        Node slow = head;
+        Node fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+            if(slow == fast){
+                return true; //Cycle detected or exist
+            }
+        }
+        return false; //cycle doesn't exist
+    }
+
     public static void main(String[] args) {
             // write your code here
             LinkedList ll = new LinkedList();
@@ -308,13 +322,18 @@ public class LinkedList {
             // ll.deleteNthfromEnd(3);
             // ll.print();
 
-            ll.addFirst(2);
-            ll.addFirst(1);
-            ll.addLast(2);
-            ll.addLast(1);
+            // ll.addFirst(2);
+            // ll.addFirst(1);
+            // ll.addLast(2);
+            // ll.addLast(1);
 
-            ll.print();
-            System.out.println(ll.checkPalindrome());
+            // ll.print();
+            // System.out.println(ll.checkPalindrome());
+            head = new Node(1);
+            head.next = new Node(2);
+            head.next.next = new Node(3);
+            head.next.next.next = head; //1->2->3->1 cycle exits
+            System.out.println(isCycle());
         }
     }
 
