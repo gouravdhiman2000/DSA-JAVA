@@ -316,9 +316,70 @@ public class LinkedList {
         prev.next = null;
     }
 
+    //getMid func.
+    public Node getMid(Node head){
+        Node slow = head;
+        Node fast = head.next;
+        while(fast!= null && fast.next!= null){
+            slow = slow.next; //+1
+            fast = fast.next.next; //+2
+        }
+        return slow; //return the midNode
+    }
+
+    //merge func.
+    public Node mergeSort(Node head1, Node head2){
+        Node mergedLL = new Node(-1); //dummy Node
+        Node temp = mergedLL;
+
+        while(head1 != null && head2 != null){
+            if(head1.data <= head2.data){
+                temp.next = head1;
+                head1 = head1.next; //updating head1
+                temp = temp.next; //updating temp
+            }
+            else{
+                temp.next = head2;
+                head2 = head2.next; //updating head2
+                temp = temp.next; //updating temp
+            }
+        }
+        //for remaining elements
+        while(head1 != null){
+            temp.next = head1;
+            head1 = head1.next; //updating head1
+            temp = temp.next; //updating temp
+        }
+        while(head2 != null){
+            temp.next = head1;
+            head1 = head1.next; //updating head1
+            temp = temp.next; //updating temp
+        }
+
+        return mergedLL.next; //returning mergedLL.next because mergedLL is pointing to dummy Node
+    }
+
+    //MergeSort on LL
+    public Node mergeSort(Node head){
+        //Base case-> LL is empty or LL having singleNode
+        if(head == null || head.next == null){
+            return head;
+        }
+        //1-> Find midNode
+        Node mid = getMid(head);
+
+        //2->Divide LL -> Left and right mergerSort
+        Node rightHead = mid.next;
+        mid.next = null; //break the LL
+        Node newLeft = mergeSort(head); //leftpart
+        Node newright = mergeSort(rightHead); //right part
+
+        //3->merge
+        return mergeSort(newLeft, newright);
+    }
     public static void main(String[] args) {
             // write your code here
-            LinkedList ll = new LinkedList();
+            // LinkedList ll = new LinkedList();
             // ll.print();
             // ll.addFirst(2);
             // ll.print();
@@ -366,14 +427,28 @@ public class LinkedList {
             // head.next.next.next = head; //1->2->3->1 cycle exits
             // System.out.println(isCycle());
 
-            head = new Node(1);
-            Node temp = new Node(2);
-            head.next = temp;
-            head.next.next = new Node(3);
-            head.next.next.next = temp; 
-            System.out.println(isCycle()); //true
-            removeCycle();
-            System.out.println(isCycle()); //true
+            // head = new Node(1);
+            // Node temp = new Node(2);
+            // head.next = temp;
+            // head.next.next = new Node(3);
+            // head.next.next.next = temp; 
+            // System.out.println(isCycle()); //true
+            // removeCycle();
+            // System.out.println(isCycle()); //true
+
+            LinkedList ll = new LinkedList();
+            ll.addFirst(1);
+            ll.addFirst(2);
+            ll.addFirst(3);
+            ll.addFirst(4);
+            // ll.addFirst(5);
+
+            ll.print(); //5->4->3->2->1->null
+
+            ll.head = ll.mergeSort(ll.head);
+
+            ll.print();
+
         }
     }
 
