@@ -103,12 +103,29 @@ public class stackClass {
 
         return result.toString();
     }
+
+    public static void reverseStack(Stack<Integer> s){
+        if(s.isEmpty()){
+            return; //Empty stack is reversed stack
+        }
+        int top = s.pop();
+        reverseStack(s);
+        //push at bottom for making a stack reversed
+        pushAtBottom(s, top);
+    }
+
+    public static void printStack(Stack<Integer> s){
+        while(!s.isEmpty()){
+            System.out.println(s.pop());
+        }
+    }
    
     public static void main(String[] args) {
-        // Stack<Integer> s = new Stack<>();
-        // s.push(1);
-        // s.push(2);
-        // s.push(3);
+        Stack<Integer> s = new Stack<>();
+        s.push(1);
+        s.push(2);
+        s.push(3);
+        //3,2,1
 
         // pushAtBottom(s, 4);
 
@@ -116,7 +133,10 @@ public class stackClass {
         //     System.out.println(s.pop());
         //     // s.pop();
         // }
-        String str = "abcde";
-        System.out.println(reverseString(str));
+        // String str = "abcde";
+        // System.out.println(reverseString(str));
+      
+        reverseStack(s);
+        printStack(s);
     }
 }
