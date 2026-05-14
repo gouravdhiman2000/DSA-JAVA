@@ -3,39 +3,53 @@ public class implement_queue_using_Arrays {
         static int arr[];
         static int size;
         static int rear;
+        static int front;
 
         Queue(int n){
             arr = new int[n];
             size = n;
             rear = -1;
+            front = -1;
         }
 
         public static boolean isEmpty(){
-            return rear == -1;
+            return rear == -1 && front == -1;
+        }
+
+        public static boolean isFull(){
+            return (rear+1) % size == front;
         }
 
         //Add Operation - O(1)
         public static void add(int data){
-            if(rear == size-1) { //check queue is full or not
+            if(isFull()) { //check queue is full or not
                 System.out.println("Queue is Full");
                 return;
             }
-            rear = rear+1;
+            //adding 1st element in circular queue
+            if(front == -1){
+                front = 0;
+            }
+
+            rear = (rear+1) % size;
             arr[rear] = data;
         }
 
-        //Remove Operation - O(n)
+        //Remove Operation - O(1)
         public static int remove(){
             if(isEmpty()){
                 System.out.println("Empty Queue");
                 return -1;
             }
-            int front = arr[0];
-            for(int i=0;i<rear; i++){
-                arr[i] = arr[i+1];
+            int result = arr[front];
+            //last element delete
+            if(rear == front){
+                rear = front = -1;
             }
-            rear = rear - 1;
-            return front;
+            else{
+                front = (front +  1) % size;
+            }
+            return result;
         }
 
         //peek Operation - front Value - O(1)
@@ -44,15 +58,19 @@ public class implement_queue_using_Arrays {
                 System.out.println("Empty Queue");
                 return -1;
             }
-            return arr[0]; //front value;
+            return arr[front]; //front value;
         }
     }
     //main func.
     public static void main(String args[]){
-        Queue q = new Queue(5);
+        Queue q = new Queue(3);
         q.add(1);
         q.add(2);
         q.add(3);
+        System.out.println(q.remove());
+        q.add(4);
+        System.out.println(q.remove());
+        q.add(5);
 
         while(!q.isEmpty()){
             System.out.println(q.peek());
