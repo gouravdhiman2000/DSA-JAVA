@@ -7,7 +7,8 @@ public class nonRepeatingCharacter {
             char ch = str.charAt(i);
             q.add(ch); //adding character in queue
             freq[ch -'a']++; //increase the freq of ch in freq array
-            while(!q.isEmpty() && freq[q.peek() - 'a'] > 1){
+            while(!q.isEmpty() && freq[q.peek() - 'a'] > 1
+        ){
                 q.remove();
             }            
             if(q.isEmpty()){
