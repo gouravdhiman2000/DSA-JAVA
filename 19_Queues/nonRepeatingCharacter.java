@@ -15,7 +15,7 @@ public class nonRepeatingCharacter {
                 System.out.println(-1+ " ");
             }
             else{
-                System.out.println(q.peek()+ " ");
+                System.out.print(q.peek()+ " ");
             }
         }
         System.out.println();
