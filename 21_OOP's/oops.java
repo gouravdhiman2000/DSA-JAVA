@@ -14,6 +14,9 @@ public class oops {
         //myAcc.password = "abcd"; //error
         myAcc.setPassword("Abcd@19");
         System.out.println(myAcc.setPassword("Abcd@19"));
+
+        Student s1 = new Student();
+        
     }
 }
 
@@ -43,5 +46,14 @@ class BankAccount{
     private String password;
     public String setPassword(String pwd){
         return password = pwd;
+    }
+}
+
+class Student{
+    String name;
+    int roll;
+
+    Student(){
+       System.out.println("Constructor is called.....");
     }
 }
