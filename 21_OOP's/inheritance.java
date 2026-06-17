@@ -10,6 +10,11 @@ public class inheritance {
 
         Bird b1 = new Bird();
         b1.breathe();
+
+        Cat c1 = new Cat();
+        c1.legs = 4;
+        c1.mewwo();
+        System.out.println(c1.legs);
     }
 }
 
@@ -32,6 +37,13 @@ class fish extends Animal{
     }
 }
 
+class shark extends fish{
+    void predator(){
+        System.out.println("Shark is Predator");
+    }
+}
+
+
 //Multi-level inheritance
 class Mammals extends Animal{
     int legs;
@@ -42,6 +54,21 @@ class Mammals extends Animal{
 
 class Dog extends Mammals{
     String breed;
+    void bauuu(){
+        System.out.println("bhauuuuu");
+    }
+}
+
+class Cat extends Mammals{
+    void mewwo(){
+        System.out.println("Meewooo");
+    }
+}
+
+class Human extends Mammals{
+    void speak(){
+        System.out.println("Speaks");
+    }
 }
 
 //Hierarchial Inheritance
@@ -49,4 +76,8 @@ class Bird extends Animal{
     void fly(){
         System.out.println("Fly");
     }
+}
+
+class Peacock extends Bird{
+    
 }
