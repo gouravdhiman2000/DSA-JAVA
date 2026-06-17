@@ -7,6 +7,9 @@ public class inheritance {
         dobby.eat();
         dobby.legs = 4;
         System.out.println(dobby.legs);
+
+        Bird b1 = new Bird();
+        b1.breathe();
     }
 }
 
@@ -32,8 +35,18 @@ class fish extends Animal{
 //Multi-level inheritance
 class Mammals extends Animal{
     int legs;
+    void walk(){
+        System.out.println("Walk");
+    }
 }
 
 class Dog extends Mammals{
     String breed;
+}
+
+//Hierarchial Inheritance
+class Bird extends Animal{
+    void fly(){
+        System.out.println("Fly");
+    }
 }
