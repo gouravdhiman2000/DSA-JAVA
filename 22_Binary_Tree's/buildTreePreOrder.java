@@ -61,6 +61,37 @@ public class buildTreePreOrder {
             postOrder(root.right);
             System.out.print(root.data + " ");
         }
+
+        public static void levelOrder(Node root){
+            if(root == null){
+                return;
+            }
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null);
+
+            while(!q.isEmpty()){
+                Node currNode = q.remove();
+                if(currNode == null){
+                    System.out.println(); //Print next line
+                    if(q.isEmpty()){
+                        break;
+                    }
+                    else{
+                        q.add(null);
+                    }
+                }
+                else{
+                    System.out.print(currNode.data + " ");
+                    if(currNode.left != null){
+                        q.add(currNode.left);
+                    }
+                    if(currNode.right != null){
+                        q.add(currNode.right);
+                    }
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -75,6 +106,8 @@ public class buildTreePreOrder {
 
         //tree.inOrder(root); //4-2-5-1-3-6
 
-        tree.postOrder(root); //4-5-2-6-3-1
+        //tree.postOrder(root); //4-5-2-6-3-1
+
+        tree.levelOrder(root); //1-2-3-4-5-6
     }
 }
