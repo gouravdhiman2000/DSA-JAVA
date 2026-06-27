@@ -76,6 +76,41 @@ public class heightOfBinaryTree {
 
         return new Info(dia, ht);
     }
+
+    //SubTree of another Tree
+    public static boolean isSubtree(Node root, Node subRoot){
+        if(root == null){
+            return false;
+        }
+        if(root.data == subRoot.data){
+            if(isIdentical(root, subRoot)){
+                return true;
+            }
+        }
+
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
+
+    public static boolean isIdentical(Node node, Node subRoot){
+        if(node == null && subRoot == null){
+            return true;
+        }
+        else if(node == null || subRoot == null || node.data != subRoot.data){
+            return false;
+        }
+
+        //leftSubtree is non-identical
+        if(!isIdentical(node.left, subRoot.left)){
+            return false;
+        }
+
+        //rightSubtree is non-identical
+        if(!isIdentical(node.right, subRoot.right)){
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         /*
                 1
@@ -92,6 +127,15 @@ public class heightOfBinaryTree {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
+        /*
+                2
+               / \
+              4   5           
+        */
+        Node subRoot = new Node(2);
+        subRoot.left = new Node(4);
+        subRoot.right = new Node(5);
+
         //System.out.println(height(root));
 
         //System.out.println(count(root));
@@ -102,7 +146,9 @@ public class heightOfBinaryTree {
 
         Info result = diameter2(root);
 
-        System.out.println("Diameter of Binary Tree = " + result.dia);
-        System.out.println("Height of Binary Tree = " + result.ht);
+        // System.out.println("Diameter of Binary Tree = " + result.dia);
+        // System.out.println("Height of Binary Tree = " + result.ht);
+
+        System.out.println(isSubtree(root, subRoot));
     }
 }
