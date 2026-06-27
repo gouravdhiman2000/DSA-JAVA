@@ -37,6 +37,21 @@ public class heightOfBinaryTree {
         int rightSum = sum(root.right);
         return leftSum + rightSum + root.data;
     }
+    //diameter of BT
+    public static int diameter(Node root){
+        if(root == null){
+            return 0;
+        }
+        int ld = diameter(root.left);
+        int lh = height(root.left);
+
+        int rd = diameter(root.right);
+        int rh = height(root.right);
+
+        int selfdia = lh + rh + 1;
+
+        return Math.max(selfdia, Math.max(ld, rd));
+    }
     public static void main(String[] args) {
         /*
                 1
@@ -57,6 +72,8 @@ public class heightOfBinaryTree {
 
         //System.out.println(count(root));
 
-        System.out.println(sum(root));
+        //System.out.println(sum(root));
+
+        System.out.println(diameter(root));
     }
 }
