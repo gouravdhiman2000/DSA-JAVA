@@ -50,44 +50,44 @@ public class build_BST {
     }
 
     //Delete a Node in BST
-    // public static Node delete(Node root, int val){
-    //     if(root.data < val){
-    //         //search the deleting node in RST
-    //         root.right = delete(root.right, val);
-    //     }
-    //     else if(root.data > val){
-    //         //search the deleting node in LST
-    //         root.left = delete(root.left, val);
-    //     }
-    //     else{
-    //         //Found the deleting Node
-    //         //Case 1 -> Leaf Node
-    //         if(root.left == null && root.right == null){
-    //             return null;
-    //         }
-    //         //Case 2-> One child
-    //         if(root.left == null){
-    //             return root.right;
-    //         }
-    //         else if(root.right == null){
-    //             return root.left;
-    //         }
-    //         //Case 3 -> Two children
-    //         //Step 1-> find Inorder Successor
-    //         Node IS = findInOrderSuccessor(root.right); //IS -> Left most node in right Subtree
-    //         //Step 2-> Replace value with IS
-    //         root.data = IS.data; //replace
-    //         //Step 3-> Delete the node for IS
-    //         root.right = delete(root.right, IS.data); //Delete IS
-    //     }
-    //     return root;
-    // }
-    // public static Node findInOrderSuccessor(Node root){
-    //     while(root.left != null){
-    //         root = root.left;
-    //     }
-    //     return root;
-    // }
+    public static Node delete(Node root, int val){
+        if(root.data < val){
+            //search the deleting node in RST
+            root.right = delete(root.right, val);
+        }
+        else if(root.data > val){
+            //search the deleting node in LST
+            root.left = delete(root.left, val);
+        }
+        else{
+            //Found the deleting Node
+            //Case 1 -> Leaf Node
+            if(root.left == null && root.right == null){
+                return null;
+            }
+            //Case 2-> One child
+            if(root.left == null){
+                return root.right;
+            }
+            else if(root.right == null){
+                return root.left;
+            }
+            //Case 3 -> Two children
+            //Step 1-> find Inorder Successor
+            Node IS = findInOrderSuccessor(root.right); //IS -> Left most node in right Subtree
+            //Step 2-> Replace value with IS
+            root.data = IS.data; //replace
+            //Step 3-> Delete the node for IS
+            root.right = delete(root.right, IS.data); //Delete IS
+        }
+        return root;
+    }
+    public static Node findInOrderSuccessor(Node root){
+        while(root.left != null){
+            root = root.left;
+        }
+        return root;
+    }
     public static void main(String[] args) {
         int values[] ={8,5,3,1,4,6,10,11,14};
         Node root = null;
@@ -98,17 +98,17 @@ public class build_BST {
         inOrder(root); //To verify correct BST is constructed or not, because inOrder Traversal on BST gives Sorted Sequence
         System.out.println();
 
-        if(search(root, 8)){
-            System.out.println("Key Found in BST");
-        }
-        else{
-            System.out.println("Key Not Found in BST");
-        }
+        // if(search(root, 8)){
+        //     System.out.println("Key Found in BST");
+        // }
+        // else{
+        //     System.out.println("Key Not Found in BST");
+        // }
 
         //delete(root, 1);//case - 1 
         //delete(root, 10); //case - 2 
-        // delete(root, 5);//case - 3  
-        // System.out.println();
-        // inOrder(root);
+        delete(root, 5);//case - 3  
+        System.out.println();
+        inOrder(root);
     }
 }
