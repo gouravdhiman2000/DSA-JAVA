@@ -34,20 +34,20 @@ public class build_BST {
     }
 
     //Search in a BST
-    // public static boolean search(Node root, int key){
-    //     if(root == null) return false;
+    public static boolean search(Node root, int key){
+        if(root == null) return false;
 
-    //     if(root.data == key) return true;
+        if(root.data == key) return true;
 
-    //     if(root.data > key){
-    //         //search in LST
-    //         return search(root.left, key);
-    //     }
-    //     else{
-    //         //root.data < key -> search in RST
-    //         return search(root.right, key);
-    //     }
-    // }
+        if(root.data > key){
+            //search in LST
+            return search(root.left, key);
+        }
+        else{
+            //root.data < key -> search in RST
+            return search(root.right, key);
+        }
+    }
 
     //Delete a Node in BST
     // public static Node delete(Node root, int val){
@@ -98,12 +98,12 @@ public class build_BST {
         inOrder(root); //To verify correct BST is constructed or not, because inOrder Traversal on BST gives Sorted Sequence
         System.out.println();
 
-        // if(search(root, 8)){
-        //     System.out.println("Key Found in BST");
-        // }
-        // else{
-        //     System.out.println("Key Not Found in BST");
-        // }
+        if(search(root, 8)){
+            System.out.println("Key Found in BST");
+        }
+        else{
+            System.out.println("Key Not Found in BST");
+        }
 
         //delete(root, 1);//case - 1 
         //delete(root, 10); //case - 2 
