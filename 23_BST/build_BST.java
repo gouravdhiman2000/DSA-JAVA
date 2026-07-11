@@ -88,6 +88,27 @@ public class build_BST {
         }
         return root;
     }
+
+    //print in range 
+    public static void printInRange(Node root, int k1, int k2){
+        if(root == null) return;
+
+        if(root.data >= k1 && root.data <= k2){
+            //k1 <= root.data <= k2
+            printInRange(root.left, k1, k2); //Left subtree
+            System.out.print(root.data + " ");
+            printInRange(root.right, k1, k2); //right subtree
+        }
+        else if(root.data < k1){
+            //left Subtree
+            printInRange(root.left, k1, k2);
+        }
+        else{
+            //root.data > k2 -> right Subtree
+            printInRange(root.right, k1, k2);
+        }
+
+    }
     public static void main(String[] args) {
         int values[] ={8,5,3,1,4,6,10,11,14};
         Node root = null;
@@ -107,8 +128,10 @@ public class build_BST {
 
         //delete(root, 1);//case - 1 
         //delete(root, 10); //case - 2 
-        delete(root, 5);//case - 3  
-        System.out.println();
-        inOrder(root);
+        // delete(root, 5);//case - 3  
+        // System.out.println();
+        // inOrder(root);
+
+        printInRange(root, 5, 12);
     }
 }
