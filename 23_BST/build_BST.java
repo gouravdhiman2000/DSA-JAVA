@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class build_BST {
     static class Node{
         int data;
@@ -109,8 +111,37 @@ public class build_BST {
         }
 
     }
+
+    //Root to leaf Paths
+    public static void printRoot2Leaf(Node root, ArrayList<Integer> path){
+        if(root == null) return;
+
+        //1->add currNode to path
+        path.add(root.data);
+
+        // Reach leaf Node -> print path
+        if(root.left == null && root.right == null){
+            printPath(path);
+        }
+
+        //2-> travel to leftSubtree to leaf nodes
+        printRoot2Leaf(root.left, path);
+
+        //3-> travel to rightSubtree to leaf nodes
+        printRoot2Leaf(root.right, path);
+
+        //4-> remove from arrayList last node -> path.size() - 1
+        path.remove(path.size()-1);
+    }
+
+    public static void printPath(ArrayList<Integer> path){
+        for(int i=0; i<path.size(); i++){
+            System.out.print(path.get(i) + "->");
+        }
+        System.out.println("Null");
+    }
     public static void main(String[] args) {
-        int values[] ={8,5,3,1,4,6,10,11,14};
+        int values[] ={8,5,3,6,10,11,14};
         Node root = null;
 
         for(int i=0; i<values.length; i++){
@@ -132,6 +163,9 @@ public class build_BST {
         // System.out.println();
         // inOrder(root);
 
-        printInRange(root, 5, 12);
+        //printInRange(root, 5, 12);
+
+        printRoot2Leaf(root, new ArrayList<>());
+
     }
 }
