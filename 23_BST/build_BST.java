@@ -153,7 +153,24 @@ public class build_BST {
             && isValidBST(root.right, root, max);
     }
 
-    
+    //Mirror a BST
+    public static Node createMirror(Node root){
+        if(root == null) return null;
+
+        Node leftMirror = createMirror(root.left);
+        Node rightMirror = createMirror(root.right);
+
+        root.left = rightMirror;
+        root.right = leftMirror;
+
+        return root;
+    }
+    public static void preOrder(Node root){
+        if(root == null) return;
+        System.out.print(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
     public static void main(String[] args) {
         int values[] ={8,5,3,6,10,11,14};
         Node root = null;
@@ -181,11 +198,14 @@ public class build_BST {
 
         //printRoot2Leaf(root, new ArrayList<>());
 
-        if(isValidBST(root, null, null)){
-            System.out.println("Valid BST");
-        }
-        else{
-            System.out.println("Invalid BST");
-        }
+        // if(isValidBST(root, null, null)){
+        //     System.out.println("Valid BST");
+        // }
+        // else{
+        //     System.out.println("Invalid BST");
+        // }
+
+        root = createMirror(root);
+        preOrder(root); // 8-10-11-14-5-6-3
     }
 }
