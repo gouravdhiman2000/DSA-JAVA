@@ -12,7 +12,7 @@ public class heaps {
             int x = arr.size()-1; // x is child index
             int parent = (x-1)/2; //parent index
 
-            while(arr.get(x) < arr.get(parent)){ //O(log n)
+            while(arr.get(x) > arr.get(parent)){ //O(log n)
                 //Swap
                 int temp = arr.get(x);
                 arr.set(x, arr.get(parent));
@@ -52,10 +52,10 @@ public class heaps {
             int right = 2*i+2;
             int minIdx = i; //root is minimum in minHeap
 
-            if (left < arr.size() && arr.get(minIdx) > arr.get(left)) {
+            if (left < arr.size() && arr.get(minIdx) < arr.get(left)) {
                 minIdx = left;
             }
-            if(right < arr.size() && arr.get(minIdx) > arr.get(right)){
+            if(right < arr.size() && arr.get(minIdx) < arr.get(right)){
                 minIdx = right;
             }
 
