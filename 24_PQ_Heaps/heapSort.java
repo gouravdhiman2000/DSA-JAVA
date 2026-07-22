@@ -18,22 +18,22 @@ public class heapSort {
     public static void heapify(int i, int size, int arr[]){
         int left = 2 * i + 1;
         int right = 2 * i + 2;
-        int maxIdx = i; //i-> root
+        int minIdx = i; //i-> root
         
-        if(left < size && arr[left] > arr[maxIdx]){
-            maxIdx = left;
+        if(left < size && arr[left] < arr[minIdx]){
+            minIdx = left;
         }
-        if(right < size && arr[right] > arr[maxIdx]){
-            maxIdx = right;
+        if(right < size && arr[right] < arr[minIdx]){
+            minIdx = right;
         }
 
-        if(maxIdx != i){
+        if(minIdx != i){
             //Swap
             int temp = arr[i];
-            arr[i] = arr[maxIdx];
-            arr[maxIdx] = temp;
+            arr[i] = arr[minIdx];
+            arr[minIdx] = temp;
 
-            heapify(maxIdx, size, arr);
+            heapify(minIdx, size, arr);
         }
     }
     public static void main(String[] args) {
