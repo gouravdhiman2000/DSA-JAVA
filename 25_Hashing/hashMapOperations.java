@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class hashMapOperations {
     public static void main(String[] args) {
@@ -8,6 +10,8 @@ public class hashMapOperations {
         map.put("India", 150);
         map.put("China", 100);
         map.put("USA", 50);
+        map.put("Nepal", 30);
+        map.put("Indonesia", 20);
 
         System.out.println(map); //Random Output -> because HashMap are UnOrdered map
 
@@ -30,5 +34,17 @@ public class hashMapOperations {
         //isEmpty
         System.out.println(map.isEmpty());
 
+        //Iterate on hashMap
+        Set<String> keys = map.keySet(); //O(1) -> return a Set containing all the keys
+
+        for(String k : keys){ //O(n)
+            System.out.println("Key = " + k + " , " + "Value = " + map.get(k)); //Random Order
+        }
+
+        Set<Map.Entry<String, Integer>> entries = map.entrySet();  //O(1)- return both key and value
+
+        for(Map.Entry<String, Integer> entry : entries){
+            System.out.println("Key = " + entry.getKey() + " , " + "Value = " + entry.getValue());
+        }
     } 
 }
