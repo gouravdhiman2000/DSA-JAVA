@@ -42,6 +42,13 @@ public class hashSet {
             System.out.println(city);
         }
 
+        LinkedHashSet<String> lhs = new LinkedHashSet<>();
+        lhs.add("Palampur");
+        lhs.add("Solan");
+        lhs.add("Biara");
+        lhs.add("Panchrukhi");
+        System.out.println(lhs); //output as -> of insertion order
+
 
     }
 }
