@@ -50,5 +50,12 @@ public class hashSet {
         System.out.println(lhs); //output as -> of insertion order
 
 
+        TreeSet<String> ts = new TreeSet<>();
+        ts.add("Palampur");
+        ts.add("Solan");
+        ts.add("Biara");
+        ts.add("Panchrukhi");
+        System.out.println(ts); //output as -> ascending order
+
     }
 }
