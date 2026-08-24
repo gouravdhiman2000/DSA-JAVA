@@ -23,5 +23,25 @@ public class hashSet {
         set.clear();
 
         System.out.println(set.isEmpty());
+
+        //Iteration in Hashset
+        HashSet<String> cities = new HashSet<>();
+        cities.add("Palampur");
+        cities.add("Solan");
+        cities.add("Biara");
+        cities.add("Panchrukhi");
+
+        //using iterators
+        Iterator i = cities.iterator();
+        while (i.hasNext()) {
+            System.out.println(i.next());
+        }
+
+        //using enhanced for loop
+        for(String city : cities){
+            System.out.println(city);
+        }
+
+
     }
 }
