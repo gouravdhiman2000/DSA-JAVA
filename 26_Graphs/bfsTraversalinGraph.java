@@ -56,7 +56,7 @@ public class bfsTraversalinGraph {
             if(!visit[curr]){
                 // visit[curr]
                 // Step-1
-                System.out.print(curr + "->" + " ");
+                System.out.print(curr  + " ");
                 //Step - 2
                 visit[curr] = true;
                 //Step - 3
@@ -68,10 +68,27 @@ public class bfsTraversalinGraph {
             }
         }
     }
+    
+    //dfs
+    public static void dfs(ArrayList<Edge>[] graph, int curr , boolean visit[]){
+        //visit
+        System.out.print(curr + " ");
+        visit[curr] = true;
+
+        for(int i=0; i<graph[curr].size(); i++){
+            Edge e = graph[curr].get(i);
+
+            if(!visit[e.dest]){
+                dfs(graph, e.dest, visit);
+            }
+        }
+    }
     public static void main(String[] args) {
         int V = 7;
         ArrayList<Edge> graph[] = new ArrayList[V];
         createGraph(graph);
-        bfs(graph);
+        bfs(graph); // 0 -> 1 -> 2 -> 3 -> 4 -> 5 -> 6
+        System.out.println();
+        dfs(graph, 0, new boolean[V]); // 0 -> 1 -> 3 -> 4 -> 2 -> 5 -> 6
     }
 }
